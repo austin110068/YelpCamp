@@ -3,7 +3,7 @@
 <div class="row">
   <h1 class="text-center">New Campground</h1>
   <div class="col-6 offset-3">
-    <form action="/campgrounds" method="POST">
+    <form action="/campgrounds" method="POST" class="validated-form" novalidate>
       <!-- Title -->
       <div class="mb-3">
         <label class="form-label" for="title">Title</label>
@@ -12,7 +12,11 @@
           type="text"
           id="title"
           name="campground[title]"
+          required
         />
+        <div class="valid-feedback">
+            Looks good!
+        </div>
       </div>
 
       <!-- Location -->
@@ -23,7 +27,11 @@
           type="text"
           id="location"
           name="campground[location]"
+          required
         />
+        <div class="valid-feedback">
+            Looks good!
+        </div>
       </div>
 
       <!-- Image -->
@@ -34,16 +42,32 @@
           type="text"
           id="image"
           name="campground[image]"
+          required
         />
+        <div class="valid-feedback">
+            Looks good!
+        </div>
       </div>
 
       <!-- Price -->
       <div class="mb-3">
         <label class="form-label" for="price">Campground Price</label>
         <div class="input-group">
-            <span class="input-group-text" id="price-label">$</span>
-            <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price" aria-describedby="price-label" name="campground[price]">
-          </div>
+          <span class="input-group-text" id="price-label">$</span>
+          <input
+            type="text"
+            class="form-control"
+            id="price"
+            placeholder="0.00"
+            aria-label="price"
+            aria-describedby="price-label"
+            name="campground[price]"
+            required
+          />
+          <div class="valid-feedback">
+            Looks good!
+        </div>
+        </div>
       </div>
 
       <!-- Description -->
@@ -54,7 +78,11 @@
           type="text"
           id="description"
           name="campground[description]"
+          required
         ></textarea>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
       </div>
 
       <div class="mb-3">
@@ -64,3 +92,4 @@
     <a href="/campgrounds">All Campgrounds</a>
   </div>
 </div>
+

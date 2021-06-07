@@ -6,6 +6,7 @@
       action="/campgrounds/<%= campground._id%>?_method=PUT"
       method="POST"
       class="validated-form"
+      enctype="multipart/form-data"
       novalidate
     >
       <!-- Title -->
@@ -19,9 +20,10 @@
           value="<%= campground.title %>"
           required
         />
-        <div class="valid-feedback">
-            Looks good!
+        <div class="invalid-feedback">
+          This campground would look much better with a title.
         </div>
+        <div class="valid-feedback">Looks good!</div>
       </div>
 
       <!-- Location -->
@@ -35,25 +37,22 @@
           value="<%= campground.location %>"
           required
         />
-        <div class="valid-feedback">
-            Looks good!
+        <div class="invalid-feedback">
+          This campground would look much better with a location.
         </div>
+        <div class="valid-feedback">Looks good!</div>
       </div>
 
       <!-- Image -->
       <div class="mb-3">
-        <label class="form-label" for="image">Image URL</label>
+        <label for="formFileMultiple" class="form-label">Add More Images</label>
         <input
+          type="file"
           class="form-control"
-          type="text"
-          id="image"
-          name="campground[image]"
-          value="<%= campground.image %>"
-          required
+          id="formFileMultiple"
+          name="image"
+          multiple
         />
-        <div class="valid-feedback">
-            Looks good!
-        </div>
       </div>
 
       <!-- Price -->
@@ -72,9 +71,10 @@
             value="<%= campground.price %>"
             required
           />
-          <div class="valid-feedback">
-            Looks good!
-        </div>
+          <div class="invalid-feedback">
+            This campground would look much better with a price.
+          </div>
+          <div class="valid-feedback">Looks good!</div>
         </div>
       </div>
 
@@ -88,13 +88,25 @@
           name="campground[description]"
           required
         >
-<%= campground.description %> </textarea
-        >
-        <div class="valid-feedback">
-            Looks good!
+<%= campground.description %>  
+        </textarea>
+        <div class="invalid-feedback">
+          This campground would look much better with a description.
         </div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      
+      <div class="mb-3">
+        <% campground.images.forEach(function(img, index) { %> 
+          <img src="<%= img.thumbnail %>" class="img-thumbnail" alt="">
+          <div class="form-check-inline">
+            <input type="checkbox" id="image-<%= index %>" name="deleteImages[]" value="<%= img.filename %>">
+          </div>
+          <label for="image-<%= index %>">Delete?</label>
+        <% }) %> 
       </div>
 
+      <!-- Update Button -->
       <div class="mb-3">
         <button class="btn btn-info">Update Campground</button>
       </div>

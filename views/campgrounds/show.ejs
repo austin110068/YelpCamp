@@ -4,8 +4,6 @@
 <div class="row">
   <!-- Left Part of Campground Page-->
   <div class="col-6">
-    <!-- Geometry Map -->
-    <div id="map" style="width: 400px; height: 300px"></div>
 
     <!-- Carousel images -->
     <div
@@ -14,35 +12,34 @@
       data-bs-ride="carousel"
     >
       <div class="carousel-inner">
-        <% if (campground.images.length) { %> 
-          <% campground.images.forEach((img, index) => { %>
+        <% campground.images.forEach((img, index) => { %>
           <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
             <img src="<%= img.url %>" class="d-block w-100" alt="" />
           </div>
-          <% }) %>
-        <% } else { %>
-          <img class="d-block w-10" alt="" src="https://res.cloudinary.com/yelpcampproject110068/image/upload/v1623123503/YelpCamp/nopic_iimphb.jpg" />
-        <% } %>
+        <% }) %>
       </div>
-      <% if (campground.images.length > 1) { %>
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExampleControls"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#carouselExampleControls"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+      
+      <% if (campground.images.length > 1) { %> 
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      <% } else if (!campground.images.length) { %> 
+        <img class="d-block w-10" alt="" src="https://res.cloudinary.com/yelpcampproject110068/image/upload/v1623123503/YelpCamp/nopic_iimphb.jpg" />
       <% } %>
     </div>
 
@@ -80,6 +77,8 @@
 
   <!-- Right Part of Campground Page -->
   <div class="col-6">
+    <div id="map" style="width: 400px; height: 300px"></div>
+
     <% if (currentUser) { %>
     <!-- if there's a current user, then render this form -->
     <h2>Leave a Review</h2>
@@ -177,6 +176,6 @@
 <!-- Geocoding -->
 <script>
   const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-  const campground = '<%-JSON.stringify(campground)%>'
+  const campground = <%- JSON.stringify(campground) %>
 </script>
 <script src="/javascripts/showPageMap.js"></script>

@@ -38,7 +38,7 @@ db.once("open", () => {
 
 // Configuration for App
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
@@ -171,5 +171,5 @@ app.use((err, req, res, next) => {
 
 // Listening to specific port
 app.listen(PORT, () => {
-    console.log('Serving on PORT 3000.')
+    console.log(`Serving on PORT ${PORT}.`)
 })

@@ -1,4 +1,4 @@
-# Yelp-Camp
+# YelpCamp
 
 ## Overview
 - A Node.js web app from the Udemy course - The Web Developer Bootcamp by Colt Steele.
